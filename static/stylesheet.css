@@ -1,0 +1,156 @@
+.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.login-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    background: url('/static/welcome_image.jpg') no-repeat;
+    background-size: 100%;
+}
+.login-form-2{
+    padding: 5%;
+    background: #fff;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-2 h3{
+    text-align: center;
+    color: #333;
+}
+.login-container form{
+    padding: 10%;
+}
+.btnSubmit
+{
+    width: 100%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.login-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #333;
+}
+.login-form-2 .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.admin_div {
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*admin css */
+
+section.admin_section {
+    background: #fff;
+    background: linear-gradient(to right, #fff #33AEFF);
+  }
+  
+  .admin_section .card {
+    border: none;
+    border-radius: 1rem;
+    transition: all 0.2s;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin_section hr {
+    margin: 1.5rem 0;
+  }
+  
+  .admin_section .card-title {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+  }
+  
+  .admin_section .card-price {
+    font-size: 3rem;
+    margin: 0;
+  }
+  
+  .admin_section .card-price .period {
+    font-size: 0.8rem;
+  }
+  
+  .admin_section ul li {
+    margin-bottom: 1rem;
+  }
+  
+  
+  .admin_section .btn {
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    opacity: 0.7;
+    transition: all 0.2s;
+  }
+
+  /*sidebar patient doctor */
+  #sidebar-wrapper{
+      z-index: 1;
+      position: absolute;
+      width: 0;
+      height: 100%;
+      overflow-y: hidden;
+      background: #333;
+  }
+
+  #page_content_wrapper {
+      width: 100%;
+      position: absolute;
+      padding: 15px;
+  }
+
+  #wrapper.menuDisplayed #sidebar-wrapper{
+      width: 250px;
+  }
+
+  #wrapper.menuDisplayed #page_content_wrapper {
+    padding-left: 250px;
+}
+
+.sidebar-nav {
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li{
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a{
+    display: block;
+    text-decoration: none;
+    color: #fff;
+}
+
+.sidebar-nav li a:hover{
+    background: #333;
+}
+
+#toggle-menu {
+    width: 15%;
+}
+  /* Hover Effects on Card */
+  
+  @media (min-width: 992px) {
+    .admin_section .card:hover {
+      margin-top: -.25rem;
+      margin-bottom: .25rem;
+      box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+    }
+    .admin_section .card:hover .btn {
+      opacity: 1;
+    }
+  }
+
+  

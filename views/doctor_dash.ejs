@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('partials/head'); %>
+  </head>
+  <body>
+
+<!-- Header -->
+<header class="bg-dark py-5 mb-4">
+    <div class="container">
+      <h2 class="font-weight-bold text-white text-uppercase">Welcome Dr.</h2>
+      <!--This is where the other info about the doctor will go.-->
+    </div>
+  </header>
+  <section class="admin_section py-1">
+    <div class="container">
+      <div class="row">
+        <!-- Paitent Tier -->
+        <div class="col-lg-6">
+          <div class="card mb-5 mb-lg-0">
+            <div class="card-body">
+              <h5 class="card-title text-muted text-uppercase text-center">Patient Look Up</h5>
+              <hr>
+              <form>
+                  <h5 class="card-title text-muted text-uppercase">Search Patient</h5>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Patient ID *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-block btn-primary bg-dark text-uppercase" value="Search" />
+                </div>
+                </form>
+            </div>
+          </div>
+        </div>
+        <!-- Category Tier -->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-muted text-uppercase text-center">Category Look Up</h5>
+              <hr>
+              <form>
+                  <h5 class="card-title text-muted text-uppercase">Search Category</h5>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Category Name*" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-block btn-primary bg-dark text-uppercase" value="Search" />
+                </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('partials/footer'); %>
+  </body>
+  </html>
