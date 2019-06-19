@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('partials/head'); %>
+  </head>
+  <body>
+
+<!-- Header -->
+<%- include('partials/header_user'); %>
+<header class="bg-dark py-5 mb-4">
+    <div class="container">
+      <h2 class="font-weight-bold text-white text-uppercase">Patient Name</h2>
+      <!--This is where the other info about the patient will go.-->
+    </div>
+  </header>
+
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <h4 class="font-weight-light text-dark">Personal Information</h4>
+        </button>
+      </h2>
+    </div>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne">
+      <div class="card-body">
+          <form>
+              <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Name: </label>
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control-plaintext" id="name" value="firstName lastName">
+                </div>
+              </div>
+              <div class="form-group row">
+                  <label for="email" class="col-sm-2 col-form-label">Email: </label>
+                  <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="email" value="example@example.com">
+                  </div>
+                </div>
+                <div class="form-group row">
+                    <label for="dateofbirth" class="col-sm-2 col-form-label">Date of Birth: </label>
+                    <div class="col-sm-10">
+                      <input type="text" readonly class="form-control-plaintext" id="dateofbirth" value="August 28 1989">
+                    </div>
+                  </div>
+                <div class="form-group row">
+                    <label for="address" class="col-sm-2 col-form-label">Address: </label>
+                    <div class="col-sm-10">
+                      <input type="text" readonly class="form-control-plaintext" id="address" value="446 Augusta Avenue, Toronto ON, M4M2Y7">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="phonenumber" class="col-sm-2 col-form-label">Phone Number: </label>
+                      <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="phonenumber" value="416-830-1126">
+                      </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="ethnicty" class="col-sm-2 col-form-label">Ethnicity:</label>
+                          <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" id="ethnicity" value="Ethnicity">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="gender" class="col-sm-2 col-form-label">Gender:</label>
+                          <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" id="gender" value="Gender">
+                          </div>
+                      </div>
+                  </div>
+            </form> 
+        </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0" >
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <h4 class="font-weight-light text-dark">Notes</h4>
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
+      <div class="card-body">
+          <div class="col-lg-4">
+            <form>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-block btn-primary bg-dark text-uppercase" value="Patient Note History" />
+                </div>
+            </form>
+            <hr>
+              <a href="create_note" class="btn btn-block btn-primary bg-dark text-uppercase">Create New Note</a>
+                </div>
+              </div>
+            </div>
+         </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <h4 class="font-weight-light text-dark">Reports</h4>
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
+      <div class="card-body">
+      
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Report ID</th>
+                  <th scope="col">Date:</th>
+                  <th scope="col">Requested By:</th>
+                  <th scope="col">Category:</th>
+                  <th scope="col">Report Name:</th>
+                  <th scope="col">Report URL:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>2019-02-29</td>
+                  <td>Dr. Meghan Reynolds</td>
+                  <td>patientName02-28-2019</td>
+                  <td>Ultrasound</td>
+                  <td><a href="https://www.itnonline.com/sites/itnonline/files/styles/content_feed_large/public/field/image/Fetal_ultrasound_with-subchorionic-hemorrhage-7-Weeks_Philips_ENVISOR_OB.jpg?itok=R_xCWnIa">Attachment</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>2018-12-29</td>
+                    <td>Dr. Brian Anderson</td>
+                    <td>patientName03-02-2017</td>
+                    <td>Bloodwork</td>
+                    <td><a href="https://i.pinimg.com/originals/7d/37/16/7d3716001e4cda47b7c56de8f4221d98.jpg">Attachment</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>2004-06-04</td>
+                    <td>Dr. Alex McLaren</td>
+                    <td>patientName12-24-2005</td>
+                    <td>X-Ray</td>
+                    <td><a href="https://forums.mtbr.com/attachments/rider-down-injuries-recovery/710780d1342478503-hospital-xray-w-o-insurance-hand-injuries-hand-xray.jpg">Attachment</a></td>
+                </tr>
+              </tbody>
+            </table>  
+      
+      
+      </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingFour">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                <h4 class="font-weight-light text-dark">Revision History</h4>
+            </button>
+          </h2>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour">
+          <div class="card-body">
+              <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Change Made By:</th>
+                      <th scope="col">Date of Revision:</th>
+                      <th scope="col">Revision:</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Dr. Meghan Reynolds</td>
+                      <td>2019-02-29</td>
+                      <td>Changed address</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Dr. Jacob Smith</td>
+                      <td>2017-06-29</td>
+                      <td>Changed phone number</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Dr. Michael Andrew</td>
+                      <td>2002-04-04</td>
+                      <td>Changed phone number</td>
+                    </tr>
+                  </tbody>
+                </table>  
+          </div>
+        </div>
+      </div>
+    </script>
+  </body>
+  </html>

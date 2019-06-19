@@ -8,8 +8,6 @@ const router = express.Router();
 
 // Main Routesnpm
 
-// This route is the homepage route which shows all shoes
-
 router.get('/', (req, res,) => {
     res.render('welcome', {
       pageId: 'welcome',
@@ -58,6 +56,13 @@ router.get('/admindash', (req, res,) => {
     res.render('patient_page_doctor', {
       pageId: 'patient_page_doctor',
       title: 'Patient Name',
+    })
+  })
+
+  router.get('/patient_profile', (req, res,) => {
+    res.render('patient_profile', {
+      pageId: 'patient_profile',
+      title: 'Patient Profile',
     })
   })
 module.exports = router;
