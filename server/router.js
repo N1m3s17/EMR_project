@@ -65,4 +65,18 @@ router.get('/admindash', (req, res,) => {
       title: 'Patient Profile',
     })
   })
+
+  router.get('/doctor_profile', (req, res,) => {
+    res.render('doctor_profile', {
+      pageId: 'doctor_profile',
+      title: 'Doctor Profile',
+    })
+  })
+
+  router.get('/search_category', (req, res,) => {
+    res.render('search_category', {
+      pageId: 'search_category',
+      title: 'Search Category',
+    })
+  })
 module.exports = router;
