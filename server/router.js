@@ -60,7 +60,7 @@ router.get('/admindash', (req, res,) => {
         doctor: result[0],
       })
     })
-  })
+  });
   // Search patient - admin
   router.get('/patient_profile', (req, res,) => {
     let patientId = req.params.userid;
@@ -79,7 +79,7 @@ router.get('/admindash', (req, res,) => {
   });
 
   //doctor side
-  router.get('/doctordash', (req, res,) => {
+  router.get('/doctor_dash', (req, res,) => {
     res.render('doctor_dash', {
       pageId: 'doctor_dash',
       title: 'Welcome Dr.',
