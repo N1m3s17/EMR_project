@@ -21,9 +21,9 @@ const db = mysql.createConnection ({
 // Connect to database
 db.connect(function(error){
     if(!!error){
-        console.log(`Error connecting to ${process.env.DATABASE}!`);
+        console.warn(`Error connecting to ${process.env.DATABASE}!`);
     } else {
-        console.log(`Connected to database ${process.env.DATABASE}!`);
+        console.warn(`Connected to database ${process.env.DATABASE}!`);
     }
     });
 global.db = db;
@@ -37,6 +37,6 @@ app.use('/static', express.static('static'));
 app.use(router);
 
 app.listen(port, () => {
-    console.log(`Server running on port: http://localhost:${process.env.PORT}`);
+    console.warn(`Server running on port ${process.env.PORT} @ url http://localhost:${process.env.PORT}`);
 
 });
