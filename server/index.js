@@ -3,10 +3,29 @@
 const express = require('express');
 const router = require('./router');
 const bodyParser = require('body-parser');
+const mysql = require('mysql');
 
 const app = express();
 
 app.set('view engine', 'ejs');
+
+
+//connect to DB
+const db = mysql.createConnection ({
+    host: 'localhost',
+    user: 'root',
+    password: 'Tothemax1704',
+    database: 'emr_project'
+});
+
+// connect to database
+db.connect((err) => {
+    if (err) {
+        throw err;
+    }
+    console.log('Connected to database');
+});
+global.db = db;
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
