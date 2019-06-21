@@ -65,7 +65,7 @@ router.get('/admindash', (req, res,) => {
   // Search patient - admin
   router.get('/patient_profile', (req, res,) => {
     let patientId = req.params.patientId;
-    let getpatientQuery = "SELECT * FROM `admin_hcp_user_profile` WHERE patient_id = '" + patientId + "'";
+   let getpatientQuery = "SELECT * FROM `admin_hcp_user_profile`";
 
     db.query(getpatientQuery, (err, result) => {
       if (err) {
@@ -99,7 +99,7 @@ router.get('/admindash', (req, res,) => {
   // Notes - create new and history
 
 router.get('/note_history', (req, res) => {
-    let getNoteQuery = "SELECT * FROM `notes` ORDER BY Date DESC LIMIT 10";
+    let getNoteQuery = "SELECT * FROM `notes` ORDER BY Date DESC";
     db.query(getNoteQuery, (err, result) => {
       if (err) {
         return res.status(500).send(err);
@@ -114,19 +114,6 @@ router.get('/note_history', (req, res) => {
     })
   });
 
-  // router.post('/note_history', (req, res) => {
-//     let patient_id = req.params.patient_id;
-//     let user_id = req.body.user_id;
-//     let note_text = req.body.note_text;
-
-//     let query = "UPDATE `notes` SET `patient_id` = '" + patient_id + "', `user_id` = '" + user_id + "', `note_text` = '" + note_text + "'";
-//     db.query(query, (err, result) => {
-//         if (err) {
-//             return res.status(500).send(err);
-//         }
-//         res.redirect('/');
-//     });
-// });
 
   router.get('/create_note', (req, res,) => {
     res.render('create_note', {
@@ -136,25 +123,18 @@ router.get('/note_history', (req, res) => {
   });
 
 router.post('/create_note',  (req, res) => {
-  let patient_id = req.params.patient_id;
-  let user_id = req.params.user_id;
-  let note_text = req.params.note_text;
-  let query = "INSERT INTO `notes` (patient_id, date, user_id, note_text) VALUES ('" +
-  patient_id + "', NOW()), '" + user_id + "', '" + note_text + "',)";
-  console.log(patient_id);
-db.query(query, (err, result) => {
+  let patient_id = req.body.patient_id;
+  let user_id = req.body.user_id;
+  let note_text = req.body.note_text;
+  let newNoteQuery = "INSERT INTO `notes` (patient_id, date, user_id, note_text) VALUES ('" +
+  patient_id + "', CURDATE(), '" + user_id + "', '" + note_text + "')";
+db.query(newNoteQuery, (err, result) => {
   if (err) {
       return res.status(500).send(err);
-  }
-  let query = "INSERT INTO `notes` (patient_id, date, user_id, note_text) VALUES ('" +
-  patient_id + "', CURDATE(), '" + user_id + "', '" + note_text + "',)";
-  db.query(query, (err, result) => {
-                if (err) {
-                    return res.status(500).send(err);
-              }
-        res.redirect('/notes_history');
-});
-});
+  } else {
+        res.redirect('/note_history');
+      }
+    })
 });
 
 module.exports = router;
