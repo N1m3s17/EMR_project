@@ -33,11 +33,13 @@
                 </tr>
                 </thead>
                 <tbody> 
+                <%  sql.forEach(function(patient){  %>  
                 <tr>
-                    <td scope="row">1</td>
-                    <td scope="row"><%=  %></td>
-                    <td scope="row">Dr. Meghan Reynolds</td>
-                    <td scope="row">patientName02-28-2019</td>
+                    <td scope="row"><%= patient.patient_id %> </td>
+                    <td scope="row"><%= patient.date %></td>
+                    <td scope="row"><%= patient.user_id %></td>
+                    <td scope="row"><%= patient.note_text %></td>
                 </tr>
+          <% })  %>
                 </tbody>
             </table>  

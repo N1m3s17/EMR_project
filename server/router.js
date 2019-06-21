@@ -98,38 +98,23 @@ router.get('/admindash', (req, res,) => {
   
   // Notes - create new and history
 
-//   router.get('/note_history'), (req, res) => {
-//     let query = "SELECT * FROM `notes` ORDER BY date DESC LIMIT 10"; // query database to get all the notes
+router.get('/note_history', (req, res) => {
+    let getNoteQuery = "SELECT * FROM `notes` ORDER BY Date DESC LIMIT 10";
+    db.query(getNoteQuery, (err, result) => {
+      if (err) {
+        return res.status(500).send(err);
+      } else {
+          res.render('note_history', {
+          pageId: 'note_history',
+          title: 'Note History',
+          'sql': result,
+      })
+    }
+      console.log(result);
+    })
+  });
 
-//     // execute query
-//     db.query(query, (err, result) => {
-//         if (err) {
-//             res.redirect('/note_history');
-//         }
-//         res.render('note_history', {
-//             title: "Note History"
-//             ,patientX: result
-//         });
-//     });
-// };
-
-//   router.get('/note_history', (req, res) => {
-//     // let patient_id = req.params.patient_id;
-//     // let user_id = req.body.user_id;
-//     // let note_text = req.body.note_text;
-//     let query = "SELECT * FROM `notes`";
-//     db.query(query, (err, result) => {
-//         if (err) {
-//             return res.status(500).send(err);
-//         }
-//         res.render('note_history', {
-//             title: "Note History"
-//             ,patient: result[0]
-//             ,message: ''
-//         });
-//     });
-// });
-// router.post('/note_history', (req, res) => {
+  // router.post('/note_history', (req, res) => {
 //     let patient_id = req.params.patient_id;
 //     let user_id = req.body.user_id;
 //     let note_text = req.body.note_text;
@@ -142,55 +127,6 @@ router.get('/admindash', (req, res,) => {
 //         res.redirect('/');
 //     });
 // });
-
-router.get('/note_history', (req, res) => {
-  //  let patient_id = req.params.patient_id;
-   // let user_id = req.body.user_id;
-    //let note_text = req.params.note_text;
-    //let query = "SELECT * FROM `notes` WHERE patient_id = '" + patient_id + "' ORDER BY Date DESC LIMIT 10";
-
-    let getNoteQuery = "SELECT * FROM `notes`";
-    db.query(getNoteQuery, (err, result) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
-      res.render('note_history', {
-        pageId: 'note_history',
-        title: 'Note History',
-        patientX: result[0],
-      })
-      console.log(result);
-    })
-  });
-
-//     db.query('SELECT * FROM notes', (err, result) =>{
-//       if(!err) {
-//         return res.status(500).send(err);
-//       }
-//       if (result.length > 0) {
-//         message = 'No notes currently exist';
-//         res.render('note_history', {
-//           message,
-//           title: "Add a New Note"
-//         }); 
-//       } else {
-//         if (err) {
-//           return res.status(500).send(err);
-//         }
-//         let query = "INSERT INTO `notes` (patient_id, user_id, note_text) VALUES ('" + patient_id + "','" + user_id + "', '" + note_text + "')";
-//         db.query(query, (err, result) => {
-//           if (err){
-//             return res.status(500).send(err);
-//           }
-//           res.render('note_history', {
-//             pageId: 'note_history',
-//             title: 'Note History',
-//         });
-//         })
-//       };
-//     });
-// });
-
 
   router.get('/create_note', (req, res,) => {
     res.render('create_note', {
