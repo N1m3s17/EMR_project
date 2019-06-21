@@ -45,7 +45,7 @@ router.get('/admindash', (req, res,) => {
   
    // Search Doctor - admin
 
-   router.get('/doctor_profile', (req, res,) => {
+  router.get('/doctor_profile', (req, res,) => {
     let userEmail = req.params.email;
     console.log(userEmail);
     let getdoctorQuery = "SELECT * FROM `admin_hcp_user_profile` WHERE email = '" + userEmail + "'";
@@ -65,7 +65,7 @@ router.get('/admindash', (req, res,) => {
   // Search patient - admin
   router.get('/patient_profile', (req, res,) => {
     let patientId = req.params.patientId;
-   let getpatientQuery = "SELECT * FROM `admin_hcp_user_profile`";
+    let getpatientQuery = "SELECT * FROM `admin_hcp_user_profile`";
 
     db.query(getpatientQuery, (err, result) => {
       if (err) {
@@ -114,7 +114,6 @@ router.get('/note_history', (req, res) => {
     })
   });
 
-
   router.get('/create_note', (req, res,) => {
     res.render('create_note', {
       pageId: 'create_note',
@@ -127,13 +126,55 @@ router.post('/create_note',  (req, res) => {
   let user_id = req.body.user_id;
   let note_text = req.body.note_text;
   let newNoteQuery = "INSERT INTO `notes` (patient_id, date, user_id, note_text) VALUES ('" +
-  patient_id + "', CURDATE(), '" + user_id + "', '" + note_text + "')";
+  patient_id + "', CURRENT_TIMESTAMP(), '" + user_id + "', '" + note_text + "')";
 db.query(newNoteQuery, (err, result) => {
   if (err) {
       return res.status(500).send(err);
   } else {
         res.redirect('/note_history');
       }
+    })
+});
+
+
+router.get('/patient_report', (req, res) => {
+  let getReportQuery = "SELECT * FROM `patient_report` ORDER BY datetime DESC";
+  db.query(getReportQuery, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+        res.render('patient_report', {
+        pageId: 'patient_report',
+        title: 'Patient Report',
+        'sql': result,
+    })
+  }
+    console.log(result);
+  })
+});
+
+router.get('/create_report', (req, res,) => {
+  res.render('create_report', {
+    pageId: 'create_report',
+    title: 'Create New Report',
+  });
+});
+
+router.post('/create_report',  (req, res) => {
+  let patient_id = req.body.patient_id;
+  let user_id = req.body.user_id;
+  let category_id = req.body.category_id;
+  let report_name = req.body.report_name;
+  let report_url = req.body.report_url;
+  let newNoteQuery = "INSERT INTO `patient_report` (report_id, patient_id, user_id, category_id, report_name, report_url) VALUES (LAST_INSERT_ID(), '" +
+  patient_id + "', '" + user_id + "', '" + category_id + "', '" + report_name + "', '" + report_url + "')";
+db.query(newNoteQuery, (err, result) => {
+  if (err) {
+      return res.status(500).send(err);
+  } else {
+        res.redirect('/patient_report');
+      }
+      console.log(result);
     })
 });
 
