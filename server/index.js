@@ -9,11 +9,13 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
+// Parse all incoming <form> data into an object we can access in our routes with `req.body`
+app.use(express.urlencoded({ extended: true }));
 // connect db
 const db = mysql.createConnection ({
     host: 'localhost',
     user: 'root',
-    password:'',
+    password:'Chester4!',
     database:'fs1030_group_project'
 })
 
