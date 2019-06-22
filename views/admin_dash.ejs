@@ -6,9 +6,10 @@
   <body>
 
 <!-- Header -->
+<%- include('partials/header_admin'); %>
 <header class="bg-dark py-5 mb-4">
     <div class="container">
-      <h2 class="font-weight-bold text-white text-uppercase">Welcome Admin</h2>
+      <h2 class="font-weight-bold text-white text-uppercase">Welcome <%= adminX.first_name %></h2>
     </div>
   </header>
   <section class="admin_section py-1">
@@ -21,9 +22,9 @@
               <h4 class="card-title text-muted text-uppercase text-center">Doctor</h4>
               <hr>
               <h5 class="card-title text-muted text-uppercase">Search Doctor</h5>
-              <form class="container" method="get" action="/doctor_profile">
+              <form class="container" action="/admin_get_doctor" method="POST">
                 <div class="form-group">
-                  <input type="text" name="email" id="email" class="form-control" placeholder="Your Email *" value="" />
+                  <input type="text" name="email" class="form-control" placeholder="Your Email *" value="" />
                 </div>
                 <div class="form-group">
                   <input type="submit" class="btn btn-block btn-primary bg-dark text-uppercase" value="Search" />
@@ -40,10 +41,10 @@
             <div class="card-body">
               <h5 class="card-title text-muted text-uppercase text-center">Patient</h5>
               <hr>
-              <form>
+              <form class="container" action="/admin_get_patient" method="POST"> 
                   <h5 class="card-title text-muted text-uppercase">Search Patient</h5>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Patient ID *" value="" />
+                    <input type="text" class="form-control" name="patient_id" placeholder="Patient ID *" value="" />
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-block btn-primary bg-dark text-uppercase" value="Search" />

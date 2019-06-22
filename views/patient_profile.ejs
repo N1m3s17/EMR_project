@@ -8,16 +8,16 @@
 <!-- Header -->
 <header class="bg-dark py-5 mb-4">
     <div class="container">
-      <h2 class="font-weight-bold text-white text-uppercase">Doctor <%= doctorX.first_name %></h2>
+      <h2 class="font-weight-bold text-white text-uppercase">Patient #<%= patientX.patient_id %></h2>
     </div>
   </header>
   <section class="admin_section py-1">
   <div class="col login-form-2">
-        <h3>Doctor Info</h3>
-        <p><%= doctorX.first_name %><%= doctorX.first_name %></p>
-        <p><%= doctorX.date_of_birth %></p>
-        <p><%= doctorX.address %></p>
-        <p><%= doctorX.phone_number %></p>
+        <h3>Patient Info</h3>
+        <p><%= patientX.first_name %><%= patientX.first_name %></p>
+        <p><%= patientX.date_of_birth %></p>
+        <p><%= patientX.address %></p>
+        <p><%= patientX.phone_number %></p>
     </div>
 </section>
   <%- include('partials/footer'); %>

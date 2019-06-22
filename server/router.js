@@ -11,19 +11,81 @@ const router = express.Router();
 // This route is the homepage route which shows all shoes
 
 router.get('/', (req, res,) => {
+  let message = '';
     res.render('welcome', {
+      message: message,
       pageId: 'welcome',
       title: 'Welcome',
     })
   });
+// login route
+router.post('/login', (req, res) => {
+  let message = 'db error';
+  let sess = req.session;
 
-router.get('/admindash', (req, res,) => {
-    res.render('admin_dash', {
-      pageId: 'admin_dash',
-      title: 'Admin Home',
+  if(req.method == 'POST'){
+    let post = req.body;
+    let name = post.user_name;
+    let pass = post.password;
+    console.log(name);
+    console.log(pass);
+    let loginQuery = "SELECT * FROM `login_info` WHERE `userName` = '"+name+"' and passWOrd = '"+pass+"'";
+    db.query(loginQuery, (err, results) => {
+      if(results[0].user_role === 'admin'){
+        req.session.userId = results[0].user_id;
+        req.session.user = results[0];
+        res.redirect('/admindash');
+      }
+      else if(results[0].user_role === 'doctor'){
+        req.session.userId = results[0].user_id;
+        req.session.user = results[0];
+        res.redirect('/doctordash');
+      }
+      else {
+        message = 'Wrong Credentials.';
+        res.render('welcome.ejs', {
+          message: message,
+          pageId: 'welcome',
+          title: 'Welcome',
+        });
+      }
+    });
+  }
+  else {
+    res.render('welcome.ejs', {
+      message: message,
+      pageId: 'welcome',
+      title: 'Welcome',
+    });
+  }
+})
+
+// LOAD ADMIN PAGE
+router.get('/admindash', (req, res) => {
+    let user = req.session.user;
+    let userId = req.session.userId;
+
+    if(userId === null){
+      res.redirect('welcome.ejs', {
+        message: message,
+        pageId: 'welcome',
+        title: 'Welcome',
+      });
+    }
+    let admin_info="SELECT * FROM `admin_hcp_user_profile` WHERE `user_id` = '" + userId + "'"
+    
+    db.query(admin_info, (err, results) => {
+
+        res.render('admin_dash', {
+        user: user,
+        adminX: results[0],
+        pageId: 'admin_dash',
+        title: 'Admin Home',
+      })
     })
   });
 
+  // CREATE ROUTES for ADMIN
   router.get('/create_doctor', (req, res,) => {
     res.render('create_doctor', {
       pageId: 'create_doctor',
@@ -47,38 +109,45 @@ router.get('/admindash', (req, res,) => {
   
 // search doctor - admin
 
-  router.get('/doctor_profile', (req, res,) => {
-    let userEmail = req.params.email;
-    console.log(userEmail);
-    let getdoctorQuery = "SELECT * FROM `admin_hcp_user_profile` WHERE email = '" + userEmail + "'";
+router.post('/admin_get_doctor', (req, res, next) => {
+  let user = req.session.user;
+  let post = req.body;
+  let userEmail = post.email;
+  let getdoctorQuery = "SELECT * FROM `admin_hcp_user_profile` WHERE `email` = '" + userEmail + "'";
 
-    db.query(getdoctorQuery, (err, result) => {
+    db.query(getdoctorQuery, (err, results) => {
       if (err) {
         return res.status(500).send(err);
       }
       res.render('doctor_profile', {
+        user: user,
         pageId: 'doctor_profile',
-        title: 'Doctor Profile',
-        doctor: result[0],
+        title: results[0].first_name,
+        doctorX: results[0],
       })
-    });
+})
+})
 
-  //search patient - admin
-  router.get('/patient_profile', (req, res,) => {
-    let patientId = req.params.userid;
-    let getpatientQuery = "SELECT * FROM `admin_hcp_user_profile` WHERE patient_id = '" + patientId + "'";
+//search patient - admin
 
-    db.query(getpatientQuery, (err, result) => {
+router.post('/admin_get_patient', (req, res, next) => {
+  let user = req.session.user;
+  let post = req.body;
+  let patientId = post.patient_id;
+  let getpatientQuery = "SELECT * FROM `patient_profile` WHERE `patient_id` = '" + patientId + "'";
+
+    db.query(getpatientQuery, (err, results) => {
       if (err) {
         return res.status(500).send(err);
       }
-      res.render('doctor_profile', {
-        pageId: 'doctor_profile',
-        title: 'Create Category',
-        patientX: result[0],
+      res.render('patient_profile', {
+        user: user,
+        pageId: 'patient_profile',
+        title: results[0].first_name,
+        patientX: results[0],
       })
-    })
-  })
+})
+})
 
   //doctor side
   router.get('/doctordash', (req, res,) => {
@@ -88,13 +157,41 @@ router.get('/admindash', (req, res,) => {
     })
   });
 
-  router.get('/patientpage_doctor', (req, res,) => {
-    res.render('patient_page_doctor', {
-      pageId: 'patient_page_doctor',
-      title: 'Patient Name',
-    })
+  router.post('/doctor_get_patient', (req, res, next) => {
+    let user = req.session.user;
+    let post = req.body;
+    let patientId = post.patient_id;
+    let getpatientQuery = "SELECT * FROM `patient_profile` WHERE `patient_id` = '" + patientId + "'";
+  
+      db.query(getpatientQuery, (err, results) => {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        res.render('patient_page_doctor', {
+          user: user,
+          pageId: 'patient_page_doctor',
+          title: results[0].first_name,
+          patientX: results[0],
+        })
+  })
   })
 
-})
+//logout route
 
+router.get('/logout', (req, res, next) => {
+  let message = 'Logout Successful';
+  if (req.session){
+    req.session.destroy((err) => {
+      if(err){
+        return next(err);
+      } else {
+        return res.redirect('welcome.ejs', {
+          message: message,
+          pageId: 'welcome',
+          title: 'Welcome',
+        })
+      }
+    })
+  }
+})
 module.exports = router;
