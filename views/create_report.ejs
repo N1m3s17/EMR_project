@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <%- include('partials/head'); %>
-  </head>
-  <body>
+</head>
+<body>
 
 <!-- Header -->
 <%- include('partials/header_user'); %>
 <header class="bg-dark py-5 mb-4">
     <div class="container">
-      <h2 class="font-weight-bold text-white text-uppercase">Create New Report</h2>
+        <h2 class="font-weight-bold text-white text-uppercase">Create New Report</h2>
     </div>
-  </header>
-  <section class="admin_section py-1">
-  <div class="col login-form-2">
+</header>
+<section class="admin_section py-1">
+<div class="col login-form-2">
         <h3>Report Info</h3>
         <form action="/create_report" method="post">
             <div class="form-group">
@@ -23,18 +23,13 @@
                 <input type="text" class="form-control" name="user_id" id="user_id" placeholder="Doctor ID" value="" />
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="category_id" id="category_id" placeholder="Category Id" value="" />
-            </div>
-            
-            <div class="form-group">
-                    <select id="category" name="category" class="form-control" required>
+                    <select id="category_id" name="category_id" class="form-control" required>
                         <option selected disabled>Choose ranking</option>
                         <% sql.forEach(function(category){  %> 
-                            <option><%= category.category_name  %></option>
+                            <option><%=category.category_id %></option>
                         <% })  %>
                     </select>
                 </div>
-
             <div class="form-group">
                 <input type="text" class="form-control" name="report_name" id="report_name" placeholder="Report Name" value="" />
             </div>
@@ -44,12 +39,12 @@
             <div class="form-group">
                 <input type="submit" class="btn btn-block btn-dark text-uppercase" value="Create Report" />
             </div>
-            <div class="form-group">
-                <a href="/patient_profile" class="btn btn-block text-uppercase btn-danger">Go Back</a>
-            </div>
+            <!-- <div class="form-group">
+                <a href="/get_patient" class="btn btn-block text-uppercase btn-danger">Go Back</a>
+            </div> -->
         </form>
     </div>
 </section>
-  <%- include('partials/footer'); %>
-  </body>
-  </html>
+<%- include('partials/footer'); %>
+</body>
+</html>

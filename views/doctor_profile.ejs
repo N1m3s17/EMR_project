@@ -6,62 +6,20 @@
   <body>
 
 <!-- Header -->
-<%- include('partials/header_user'); %>
 <header class="bg-dark py-5 mb-4">
     <div class="container">
-      <h2 class="font-weight-bold text-white text-uppercase">Doctor Name</h2>
-      <!--This is where the other info about the patient will go.-->
+      <h2 class="font-weight-bold text-white text-uppercase">Doctor <%= doctorX.first_name %></h2>
     </div>
   </header>
-
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <h4 class="font-weight-light text-dark">Doctor Information</h4>
-            <p><%=  %></p>
-        </button>
-      </h2>
+  <section class="admin_section py-1">
+  <div class="col login-form-2">
+        <h3>Doctor Info</h3>
+        <p><%= doctorX.first_name %><%= doctorX.last_name %></p>
+        <p><%= doctorX.date_of_birth %></p>
+        <p><%= doctorX.address %></p>
+        <p><%= doctorX.phone_number %></p>
     </div>
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne">
-      <div class="card-body">
-          <form>
-              <div class="form-group row">
-                <label for="name" class="col-sm-2 col-form-label">Name: </label>
-                <div class="col-sm-10">
-                  <input type="text" readonly class="form-control-plaintext" id="name" value="firstName lastName">
-                </div>
-              </div>
-              <div class="form-group row">
-                  <label for="email" class="col-sm-2 col-form-label">Email: </label>
-                  <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="email" value="example@example.com">
-                  </div>
-                </div>
-                <div class="form-group row">
-                    <label for="dateofbirth" class="col-sm-2 col-form-label">Date of Birth: </label>
-                    <div class="col-sm-10">
-                      <input type="text" readonly class="form-control-plaintext" id="dateofbirth" value="August 28 1989">
-                    </div>
-                  </div>
-                <div class="form-group row">
-                    <label for="address" class="col-sm-2 col-form-label">Address: </label>
-                    <div class="col-sm-10">
-                      <input type="text" readonly class="form-control-plaintext" id="address" value="446 Augusta Avenue, Toronto ON, M4M2Y7">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                      <label for="phonenumber" class="col-sm-2 col-form-label">Phone Number: </label>
-                      <div class="col-sm-10">
-                        <input type="text" readonly class="form-control-plaintext" id="phonenumber" value="416-830-1126">
-                      </div>
-                      </div>
-                  </div>
-            </form> 
-        </div>
-    </div>
-  </div>
-
+</section>
+  <%- include('partials/footer'); %>
   </body>
   </html>

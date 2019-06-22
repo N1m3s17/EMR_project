@@ -8,7 +8,7 @@
 <!-- Header -->
 <header class="bg-dark py-5 mb-4">
     <div class="container">
-      <h2 class="font-weight-bold text-white text-uppercase">Welcome Dr.</h2>
+      <h2 class="font-weight-bold text-white text-uppercase">Welcome Dr. </h2>
       <!--This is where the other info about the doctor will go.-->
     </div>
   </header>
@@ -21,15 +21,15 @@
             <div class="card-body">
               <h5 class="card-title text-muted text-uppercase text-center">Patient Look Up</h5>
               <hr>
-              <form>
-                  <h5 class="card-title text-muted text-uppercase">Search Patient</h5>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Patient ID *" value="" />
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-block btn-primary bg-dark text-uppercase" value="Search" />
-                </div>
-                </form>
+              <form class="container" action="/get_patient" method="POST">
+                <h5 class="card-title text-muted text-uppercase">Search Patient</h5>
+              <div class="form-group">
+                  <input type="text" class="form-control" name="patient_id" placeholder="Patient ID *" value="" />
+              </div>
+              <div class="form-group">
+                  <input type="submit" class="btn btn-block btn-primary bg-dark text-uppercase" value="Search" />
+              </div>
+              </form>
             </div>
           </div>
         </div>
