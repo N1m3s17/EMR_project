@@ -153,7 +153,6 @@ router.get('/patient_report', (req, res) => {
 });
 
 
-
 router.get('/create_report', (req, res) => {
   let getCategoryQuery = "SELECT * FROM `report_category` ORDER BY category_name ASC";
   db.query(getCategoryQuery, (err, result) => {
@@ -169,8 +168,6 @@ router.get('/create_report', (req, res) => {
     console.log(result);
   })
 });
-
-
 
 router.post('/create_report',  (req, res) => {
   let patient_id = req.body.patient_id;
