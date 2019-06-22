@@ -136,7 +136,6 @@ db.query(newNoteQuery, (err, result) => {
     })
 });
 
-
 router.get('/patient_report', (req, res) => {
   let getReportQuery = "SELECT * FROM `patient_report` ORDER BY datetime DESC";
   db.query(getReportQuery, (err, result) => {
@@ -153,12 +152,25 @@ router.get('/patient_report', (req, res) => {
   })
 });
 
-router.get('/create_report', (req, res,) => {
-  res.render('create_report', {
-    pageId: 'create_report',
-    title: 'Create New Report',
-  });
+
+
+router.get('/create_report', (req, res) => {
+  let getCategoryQuery = "SELECT * FROM `report_category` ORDER BY category_name ASC";
+  db.query(getCategoryQuery, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+        res.render('create_report', {
+        pageId: 'create_report',
+        title: 'Create Report',
+        'sql': result,
+    })
+  }
+    console.log(result);
+  })
 });
+
+
 
 router.post('/create_report',  (req, res) => {
   let patient_id = req.body.patient_id;
