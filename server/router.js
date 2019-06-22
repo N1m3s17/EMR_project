@@ -260,7 +260,7 @@ router.get('/patient_report/:patient_id', (req, res) => {
 
 
 router.get('/create_report', (req, res) => {
-  let getCategoryQuery = "SELECT category_id FROM `report_category` ORDER BY category_name ASC";
+  let getCategoryQuery = "SELECT category_id FROM `report_category` ORDER BY category_id ASC";
   db.query(getCategoryQuery, (err, result) => {
     if (err) {
       return res.status(500).send(err);
@@ -287,7 +287,7 @@ db.query(newNoteQuery, (err, result) => {
   if (err) {
       return res.status(500).send(err);
   } else {
-        res.redirect('/patient_report');
+        res.redirect('/doctordash');
       }
       console.log(result);
     })

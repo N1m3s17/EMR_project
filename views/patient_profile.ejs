@@ -9,7 +9,7 @@
 <%- include('partials/header_user'); %>
 <header class="bg-dark py-5 mb-4">
     <div class="container">
-      <h2 class="font-weight-bold text-white text-uppercase">Patient #<%= patientX.patient_id %></h2>
+      <h2 class="font-weight-bold text-white text-uppercase">Patient: <%= patientX.first_name %> <%= patientX.last_name %></h2>
     </div>
   </header>
 
@@ -62,6 +62,12 @@
                             <input type="text" readonly class="form-control-plaintext" id="gender" value="<%= patientX.gender %>">
                           </div>
                       </div>
+                      <div class="form-group row">
+                          <label for="email" class="col-sm-2 col-form-label">Patient Id: </label>
+                          <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" id="patient_id" value="<%= patientX.patient_id %>">
+                          </div>
+                        </div>
                   </div>
             </form> 
         </div>
@@ -77,13 +83,6 @@
       </div>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
         <div class="card-body">
-          
-            <div class="form-group row">
-                <label for="email" class="col-sm-2 col-form-label">Patient Id: </label>
-                <div class="col-sm-10">
-                  <input type="text" readonly class="form-control-plaintext" id="patient_id" value="<%= patientX.patient_id %>">
-                </div>
-              </div>
               <a href="note_history/<%= patientX.patient_id%>" class="btn btn-block btn-primary bg-dark text-uppercase">Patient Note History</a>
               <a href="create_note" class="btn btn-block btn-primary bg-dark text-uppercase">Create New Note</a>
         </div>
