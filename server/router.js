@@ -27,8 +27,6 @@ router.post('/login', (req, res) => {
     let post = req.body;
     let name = post.user_name;
     let pass = post.password;
-    console.log(name);
-    console.log(pass);
     let loginQuery = "SELECT * FROM `login_info` WHERE `userName` = '"+name+"' and passWOrd = '"+pass+"'";
     db.query(loginQuery, (err, results) => {
       if(results[0].user_role === 'admin'){
@@ -75,7 +73,7 @@ router.get('/admindash', (req, res) => {
     let admin_info="SELECT * FROM `admin_hcp_user_profile` WHERE `user_id` = '" + userId + "'"
     
     db.query(admin_info, (err, results) => {
-
+        if (err) throw err;
         res.render('admin_dash', {
         user: user,
         adminX: results[0],
@@ -93,6 +91,27 @@ router.get('/admindash', (req, res) => {
     })
   });
   
+  router.post('/add_doctor', (req, res, next) => {
+    let post = req.body;
+    let email = post.email;
+    let username = post.username;
+    let password = post.password;
+    let first_name = post.firstName;
+    let last_name = post.lastName;
+    let dob = post.DOB;
+    let home_address = post.homeAddress;
+    let phone_number = post.phoneNumber;
+    let user_role = 'doctor';
+
+    let addQuery = "INSERT INTO `admin_hcp_user_profile` (first_name, last_name, position, number, image, user_name) VALUES ('" +
+    first_name + "', '" + last_name + "', '" + position + "', '" + number + "', '" + image_name + "', '" + username + "')";
+db.query(addQuery, (err, result) => {
+    if (err) {
+        return res.status(500).send(err);
+    }
+    res.redirect('/');
+});
+  })
   router.get('/create_patient', (req, res,) => {
     res.render('create_patient', {
       pageId: 'create_patient',
@@ -130,7 +149,7 @@ router.post('/admin_get_doctor', (req, res, next) => {
 
 //search patient - admin
 
-router.post('/admin_get_patient', (req, res, next) => {
+router.post('/get_patient', (req, res, next) => {
   let user = req.session.user;
   let post = req.body;
   let patientId = post.patient_id;
@@ -157,24 +176,6 @@ router.post('/admin_get_patient', (req, res, next) => {
     })
   });
 
-  router.post('/doctor_get_patient', (req, res, next) => {
-    let user = req.session.user;
-    let post = req.body;
-    let patientId = post.patient_id;
-    let getpatientQuery = "SELECT * FROM `patient_profile` WHERE `patient_id` = '" + patientId + "'";
-  
-      db.query(getpatientQuery, (err, results) => {
-        if (err) {
-          return res.status(500).send(err);
-        }
-        res.render('patient_page_doctor', {
-          user: user,
-          pageId: 'patient_page_doctor',
-          title: results[0].first_name,
-          patientX: results[0],
-        })
-  })
-  })
 
 //logout route
 

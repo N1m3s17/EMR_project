@@ -19,6 +19,15 @@
         <p><%= patientX.address %></p>
         <p><%= patientX.phone_number %></p>
     </div>
+    <div class="col">
+        <% if(user.user_role === 'admin'){ %>
+            <hr>
+            <a href="/admindash" class="btn btn-block text-uppercase btn-danger">Update</a>
+            <hr>
+            <a href="/admindash" class="btn btn-block text-uppercase btn-danger">Delete</a>
+       <% } %>
+    </div>
+
 </section>
   <%- include('partials/footer'); %>
   </body>
