@@ -113,10 +113,18 @@
                   <th scope="row">1</th>
                   <td>2019-02-29</td>
                   <td>Dr. Meghan Reynolds</td>
-                  <td>patientName02-28-2019</td>
+                  <td>patient10102-28-2019</td>
                   <td>Ultrasound</td>
-                  <td><a href="https://www.itnonline.com/sites/itnonline/files/styles/content_feed_large/public/field/image/Fetal_ultrasound_with-subchorionic-hemorrhage-7-Weeks_Philips_ENVISOR_OB.jpg?itok=R_xCWnIa">Attachment</a></td>
+                  <td><a href="https://www.itnonline.com/sites/itnonline/files/styles/content_feed_large/public/field/image/Fetal_ultrasound_with-subchorionic-hemorrhage-7-Weeks_Philips_ENVISOR_OB.jpg?itok=R_xCWnIa" target="_blank">Attachment</a></td>
                 </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>2019-06-21</td>
+                    <td>Dr. Meghan Reynolds</td>
+                    <td>patient10102-28-2019</td>
+                    <td>Ultrasound Second Round</td>
+                    <td><a href="https://www.itnonline.com/sites/itnonline/files/styles/content_feed_large/public/field/image/Fetal_ultrasound_with-subchorionic-hemorrhage-7-Weeks_Philips_ENVISOR_OB.jpg?itok=R_xCWnIa" target="_blank">Attachment</a></td>
+                  </tr>
               </tbody>
             </table>  
             <a href="patient_report/<%= patientX.patient_id%>" class="btn btn-block btn-primary bg-dark text-uppercase">View More</a>
@@ -166,12 +174,12 @@
           </div>
         </div>
         <div class="col">
-            <%  %>
+            <% if(patientX.user_role === 'admin'){ %>
                 <hr>
                 <a href="/admindash" class="btn btn-block text-uppercase btn-danger">Update</a>
                 <hr>
                 <a href="/admindash" class="btn btn-block text-uppercase btn-danger">Delete</a>
-            <%  %>
+                <% } %>
         </div>
       </div>
     </script>

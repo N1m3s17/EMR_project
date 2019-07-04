@@ -16,7 +16,7 @@ router.get('/', (req, res,) => {
       title: 'Welcome',
     })
   });
-// login route
+// login route 
 router.post('/login', (req, res) => {
   let message = 'db error';
   let sess = req.session;
@@ -31,6 +31,7 @@ router.post('/login', (req, res) => {
         req.session.userId = results[0].user_id;
         req.session.user = results[0];
         res.redirect('/admindash');
+      
       }
       else if(results[0].user_role === 'doctor'){
         req.session.userId = results[0].user_id;
