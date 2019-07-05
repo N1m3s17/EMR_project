@@ -6,6 +6,7 @@
   <body>
 
 <!-- Header -->
+<%- include('partials/header_admin'); %>
 <header class="bg-dark py-5 mb-4">
     <div class="container">
       <h2 class="font-weight-bold text-white text-uppercase">Doctor <%= doctorX.first_name %></h2>
@@ -14,11 +15,19 @@
   <section class="admin_section py-1">
   <div class="col login-form-2">
         <h3>Doctor Info</h3>
-        <p><%= doctorX.first_name %><%= doctorX.first_name %></p>
+        <p><%= doctorX.first_name %> <%= doctorX.last_name %></p>
         <p><%= doctorX.date_of_birth %></p>
         <p><%= doctorX.address %></p>
         <p><%= doctorX.phone_number %></p>
     </div>
+    <div class="col">
+            <% if(user.user_role === 'admin'){ %>
+                <hr>
+                <a href="/updatedoctor/<%= doctorX.user_id %>" class="btn btn-block text-uppercase btn-danger">Update</a>
+                <hr>
+                <a href="/deletedoctor/<%= doctorX.user_id %>" class="btn btn-block text-uppercase btn-danger">Delete</a>
+           <% } %>
+        </div>
 </section>
   <%- include('partials/footer'); %>
   </body>

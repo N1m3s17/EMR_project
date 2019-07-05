@@ -9,18 +9,18 @@
 <%- include('partials/header_admin'); %>
 <header class="bg-dark py-5 mb-4">
     <div class="container">
-      <h2 class="font-weight-bold text-white text-uppercase">Create Category</h2>
+      <h2 class="font-weight-bold text-white text-uppercase">Update Category</h2>
     </div>
   </header>
   <section class="admin_section py-1">
   <div class="col login-form-2">
         <h3>Category Info</h3>
-        <form class="container" action="/add_category" method="POST">
+        <form class="container" action="/editcategory/<%= categoryX.category_id %>" method="POST">
             <div class="form-group">
-                <input type="text" class="form-control" name="category_id" placeholder="Category ID *" value="" required/>
+                <input type="text" class="form-control" name="category_id" placeholder="Category ID *" value="<%=categoryX.category_id %>" required/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="category_name" placeholder="Category Name *" value="" required/>
+                <input type="text" class="form-control" name="category_name" placeholder="Category Name *" value="<%=categoryX.category_name %>" required/>
             </div>
             <div class="form-group">
                 <input type="submit" class="btnSubmit" value="Create" />

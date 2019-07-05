@@ -6,6 +6,7 @@
   <body>
 
 <!-- Header -->
+<%- include('partials/header_admin'); %>
 <header class="bg-dark py-5 mb-4">
     <div class="container">
       <h2 class="font-weight-bold text-white text-uppercase">Patient #<%= patientX.patient_id %></h2>
@@ -22,9 +23,9 @@
     <div class="col">
         <% if(user.user_role === 'admin'){ %>
             <hr>
-            <a href="/admindash" class="btn btn-block text-uppercase btn-danger">Update</a>
+            <a href="/updatepatient/<%= patientX.patient_id %>" class="btn btn-block text-uppercase btn-danger">Update</a>
             <hr>
-            <a href="/admindash" class="btn btn-block text-uppercase btn-danger">Delete</a>
+            <a href="/deletepatient/<%= patientX.patient_id %>" class="btn btn-block text-uppercase btn-danger">Delete</a>
        <% } %>
     </div>
 

@@ -16,7 +16,8 @@ const db = mysql.createConnection ({
     host: 'localhost',
     user: 'root',
     password: 'Tothemax1704',
-    database: 'emr_project'
+    database: 'emr_project',
+    multipleStatements: true
 });
 
 // connect to database

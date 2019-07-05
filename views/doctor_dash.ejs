@@ -6,6 +6,7 @@
   <body>
 
 <!-- Header -->
+<%- include('partials/header_admin'); %>
 <header class="bg-dark py-5 mb-4">
     <div class="container">
       <h2 class="font-weight-bold text-white text-uppercase">Welcome Dr.</h2>
@@ -39,10 +40,10 @@
             <div class="card-body">
               <h5 class="card-title text-muted text-uppercase text-center">Category Look Up</h5>
               <hr>
-              <form>
+              <form class="container" action="/get_category" method="POST>
                   <h5 class="card-title text-muted text-uppercase">Search Category</h5>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Category Name*" value="" />
+                    <input type="text" class="form-control" name="category_id" placeholder="Category ID*" value="" />
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-block btn-primary bg-dark text-uppercase" value="Search" />

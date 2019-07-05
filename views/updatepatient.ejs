@@ -9,44 +9,45 @@
 <%- include('partials/header_admin'); %>
 <header class="bg-dark py-5 mb-4">
     <div class="container">
-      <h2 class="font-weight-bold text-white text-uppercase">Create Patient</h2>
+      <h2 class="font-weight-bold text-white text-uppercase">Update Patient</h2>
     </div>
   </header>
   <section class="admin_section py-1">
   <div class="col login-form-2">
         <h3>Doctor Info</h3>
         <!--catsss-->
-        <form class="container" action="/add_patient" method="POST">
+        <form class="container" action="/editpatient/:id" method="POST">
             <div class="form-group">
-                    <input type="text" class="form-control" name="patient_id" placeholder="Patient ID *" value="" required/>
+                    <input type="text" class="form-control" name="patient_id" placeholder="Patient ID *" value="<%=patientX.patient_id %>" required/>
                 </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="email" placeholder="Email *" value="" required/>
+                <input type="text" class="form-control" name="email" placeholder="Email *" value="<%=patientX.email %>" required/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="firstName" placeholder="First Name *" value="" required/>
+                <input type="text" class="form-control" name="firstName" placeholder="First Name *" value="<%=patientX.first_name %>" required/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="lastName" placeholder="Last Name *" value="" required/>
+                <input type="text" class="form-control" name="lastName" placeholder="Last Name *" value="<%=patientX.last_name %>" required/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="DOB" placeholder="Date of Birth(YYYYMMDD) *" value="" required/>
+                <input type="text" class="form-control" name="DOB" placeholder="Date of Birth(YYYYMMDD) *" value="<%=patientX.date_of_birth %>" required/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="homeAddress" placeholder="Address *" value="" required/>
+                <input type="text" class="form-control" name="homeAddress" placeholder="Address *" value="<%=patientX.address %>" required/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number *" value="" required/>
+                <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number *" value="<%=patientX.phone_number %>" required/>
             </div>
             <div class="form-group">
                 <select class="form-control" name="gender" placeholder="Gender *" value="" required>
+                <option selected><%= patientX.gender %></option>
                 <option>Male</option>
                 <option>Female</option>
                 <option>Other</option>
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-block btn-dark text-uppercase" value="Create" />
+                <input type="submit" class="btn btn-block btn-dark text-uppercase" value="Update" />
                 </div>
         </form>
         <hr>
