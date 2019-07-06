@@ -6,11 +6,9 @@
   <body>
 
 <!-- Header -->
-<%- include('partials/header_user'); %>
 <header class="bg-dark py-5 mb-4">
     <div class="container">
-      <h2 class="font-weight-bold text-white text-uppercase">Doctor Name</h2>
-      <!--This is where the other info about the patient will go.-->
+      <h2 class="font-weight-bold text-white text-uppercase">Doctor <%= doctorX.first_name %></h2>
     </div>
   </header>
 <% if (doctor) { %>

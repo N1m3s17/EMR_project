@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('partials/head'); %>
+  </head>
+  <body>
+
+<!-- Header -->
+<%- include('partials/header_user'); %>
+<header class="bg-dark py-5 mb-4">
+    <div class="container">
+        <h2 class="font-weight-bold text-white text-uppercase">Note History</h2>
+    </div>
+</header>
+    <div class="accordion" id="accordionExample">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+            <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h4 class="font-weight-light text-dark">Note History</h4>
+            </button>
+        </h2>
+    </div>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Patient Id:</th>
+                        <th scope="col">Date: </th>
+                        <th scope="col">Requested By:</th>
+                        <th scope="col">Note:</th>
+                </tr>
+                </thead>
+                <tbody> 
+            <%  sql.forEach(function(patient){  %>  
+                <tr>
+                    <td scope="row"><%= patient.patient_id %> </td>
+                    <td scope="row"><%= patient.date %></td>
+                    <td scope="row"><%= patient.user_id %></td>
+                    <td scope="row"><%= patient.note_text %></td>
+                </tr>
+            <% })  %>
+                </tbody>
+            </table>
+            <!-- <div class="form-group">
+                    <a href="/get_patient" class="btn btn-block text-uppercase btn-danger">Go Back</a>
+                </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

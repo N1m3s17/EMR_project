@@ -9,8 +9,7 @@
 <%- include('partials/header_user'); %>
 <header class="bg-dark py-5 mb-4">
     <div class="container">
-      <h2 class="font-weight-bold text-white text-uppercase">Patient Name</h2>
-      <!--This is where the other info about the patient will go.-->
+      <h2 class="font-weight-bold text-white text-uppercase">Patient: <%= patientX.first_name %> <%= patientX.last_name %></h2>
     </div>
   </header>
 
@@ -24,79 +23,70 @@
       </h2>
     </div>
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne">
+  
       <div class="card-body">
           <form>
               <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name: </label>
                 <div class="col-sm-10">
-                  <input type="text" readonly class="form-control-plaintext" id="name" value="firstName lastName">
+                  <input type="text" readonly class="form-control-plaintext" id="name" value="<%= patientX.first_name %> <%= patientX.last_name %>">
                 </div>
               </div>
               <div class="form-group row">
                   <label for="email" class="col-sm-2 col-form-label">Email: </label>
                   <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="email" value="example@example.com">
+                    <input type="text" readonly class="form-control-plaintext" id="email" value="<%= patientX.email %>">
                   </div>
                 </div>
                 <div class="form-group row">
                     <label for="dateofbirth" class="col-sm-2 col-form-label">Date of Birth: </label>
                     <div class="col-sm-10">
-                      <input type="text" readonly class="form-control-plaintext" id="dateofbirth" value="August 28 1989">
+                      <input type="text" readonly class="form-control-plaintext" id="dateofbirth" value="<%= patientX.date_of_birth %>">
                     </div>
                   </div>
                 <div class="form-group row">
                     <label for="address" class="col-sm-2 col-form-label">Address: </label>
                     <div class="col-sm-10">
-                      <input type="text" readonly class="form-control-plaintext" id="address" value="446 Augusta Avenue, Toronto ON, M4M2Y7">
+                      <input type="text" readonly class="form-control-plaintext" id="address" value="<%= patientX.address %>">
                     </div>
                   </div>
                   <div class="form-group row">
                       <label for="phonenumber" class="col-sm-2 col-form-label">Phone Number: </label>
                       <div class="col-sm-10">
-                        <input type="text" readonly class="form-control-plaintext" id="phonenumber" value="416-830-1126">
+                        <input type="text" readonly class="form-control-plaintext" id="phonenumber" value="<%= patientX.phone_number %>">
                       </div>
-                      </div>
-                      <div class="form-group row">
-                          <label for="ethnicty" class="col-sm-2 col-form-label">Ethnicity:</label>
-                          <div class="col-sm-10">
-                            <input type="text" readonly class="form-control-plaintext" id="ethnicity" value="Ethnicity">
-                          </div>
                       </div>
                       <div class="form-group row">
                           <label for="gender" class="col-sm-2 col-form-label">Gender:</label>
                           <div class="col-sm-10">
-                            <input type="text" readonly class="form-control-plaintext" id="gender" value="Gender">
+                            <input type="text" readonly class="form-control-plaintext" id="gender" value="<%= patientX.gender %>">
                           </div>
                       </div>
+                      <div class="form-group row">
+                          <label for="email" class="col-sm-2 col-form-label">Patient Id: </label>
+                          <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" id="patient_id" value="<%= patientX.patient_id %>">
+                          </div>
+                        </div>
                   </div>
             </form> 
         </div>
     </div>
   </div>
   <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h2 class="mb-0" >
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            <h4 class="font-weight-light text-dark">Notes</h4>
-        </button>
-      </h2>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
-      <div class="card-body">
-          <div class="col-lg-4">
-            <form>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-block btn-primary bg-dark text-uppercase" value="Patient Note History" />
-                </div>
-            </form>
-            <hr>
+      <div class="card-header" id="headingTwo">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <h4 class="font-weight-light text-dark">Notes</h4>
+          </button>
+        </h2>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
+        <div class="card-body">
+              <a href="note_history/<%= patientX.patient_id%>" class="btn btn-block btn-primary bg-dark text-uppercase">Patient Note History</a>
               <a href="create_note" class="btn btn-block btn-primary bg-dark text-uppercase">Create New Note</a>
-                </div>
-              </div>
-            </div>
-         </div>
-    </div>
-  </div>
+        </div>
+      </div>
   <div class="card">
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
@@ -107,7 +97,6 @@
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
       <div class="card-body">
-      
           <table class="table table-hover">
               <thead>
                 <tr>
@@ -124,30 +113,22 @@
                   <th scope="row">1</th>
                   <td>2019-02-29</td>
                   <td>Dr. Meghan Reynolds</td>
-                  <td>patientName02-28-2019</td>
+                  <td>patient10102-28-2019</td>
                   <td>Ultrasound</td>
-                  <td><a href="https://www.itnonline.com/sites/itnonline/files/styles/content_feed_large/public/field/image/Fetal_ultrasound_with-subchorionic-hemorrhage-7-Weeks_Philips_ENVISOR_OB.jpg?itok=R_xCWnIa">Attachment</a></td>
+                  <td><a href="https://www.itnonline.com/sites/itnonline/files/styles/content_feed_large/public/field/image/Fetal_ultrasound_with-subchorionic-hemorrhage-7-Weeks_Philips_ENVISOR_OB.jpg?itok=R_xCWnIa" target="_blank">Attachment</a></td>
                 </tr>
                 <tr>
-                    <th scope="row">2</th>
-                    <td>2018-12-29</td>
-                    <td>Dr. Brian Anderson</td>
-                    <td>patientName03-02-2017</td>
-                    <td>Bloodwork</td>
-                    <td><a href="https://i.pinimg.com/originals/7d/37/16/7d3716001e4cda47b7c56de8f4221d98.jpg">Attachment</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>2004-06-04</td>
-                    <td>Dr. Alex McLaren</td>
-                    <td>patientName12-24-2005</td>
-                    <td>X-Ray</td>
-                    <td><a href="https://forums.mtbr.com/attachments/rider-down-injuries-recovery/710780d1342478503-hospital-xray-w-o-insurance-hand-injuries-hand-xray.jpg">Attachment</a></td>
-                </tr>
+                    <th scope="row">1</th>
+                    <td>2019-06-21</td>
+                    <td>Dr. Meghan Reynolds</td>
+                    <td>patient10102-28-2019</td>
+                    <td>Ultrasound Second Round</td>
+                    <td><a href="https://www.itnonline.com/sites/itnonline/files/styles/content_feed_large/public/field/image/Fetal_ultrasound_with-subchorionic-hemorrhage-7-Weeks_Philips_ENVISOR_OB.jpg?itok=R_xCWnIa" target="_blank">Attachment</a></td>
+                  </tr>
               </tbody>
             </table>  
-      
-      
+            <a href="patient_report/<%= patientX.patient_id%>" class="btn btn-block btn-primary bg-dark text-uppercase">View More</a>
+            <a href="create_report" class="btn btn-block btn-primary bg-dark text-uppercase">Create New Report</a>
       </div>
     </div>
     <div class="card">
@@ -191,6 +172,14 @@
                   </tbody>
                 </table>  
           </div>
+        </div>
+        <div class="col">
+            <% if(patientX.user_role === 'admin'){ %>
+                <hr>
+                <a href="/admindash" class="btn btn-block text-uppercase btn-danger">Update</a>
+                <hr>
+                <a href="/admindash" class="btn btn-block text-uppercase btn-danger">Delete</a>
+                <% } %>
         </div>
       </div>
     </script>

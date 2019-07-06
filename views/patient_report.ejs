@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <%- include('partials/head'); %>
+    </head>
+<body>
+
+<!-- Header -->
+<%- include('partials/header_user'); %>
+<header class="bg-dark py-5 mb-4">
+    <div class="container">
+        <h2 class="font-weight-bold text-white text-uppercase">Patient Name</h2>
+        <!--This is where the other info about the patient will go.-->
+    </div>
+</header>
+<div class="card">
+        <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <h4 class="font-weight-light text-dark">Reports</h4>
+                </button>
+            </h2>
+        </div>
+        <div id="collapseThree" class="collapse show" aria-labelledby="headingThree">
+        <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Report ID</th>
+                    <th scope="col">Date:</th>
+                    <th scope="col">Patient Id:</th>
+                    <th scope="col">Requested By:</th>
+                    <th scope="col">Category:</th>
+                    <th scope="col">Report Name:</th>
+                    <th scope="col">Report URL:</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <%  sql.forEach(function(patient){  %>  
+                <tr>
+                    <th scope="row"><%=patient.report_id %></th>
+                    <td scope="row"><%=patient.datetime %></td>
+                    <td scope="row"><%= patient.patient_id %></td>
+                    <td scope="row"><%=patient.user_id %></td>
+                    <td scope="row"><%=patient.category_id %></td>
+                    <td scope="row"><%=patient.report_name %></td>
+                    <td scope="row"><a href="<%= patient.report_url %>" target="_blank" >Attachment</a></td>
+                </tr>
+                <% })  %>
+            </tbody>
+        </table>  
+        <!-- <div class="form-group">
+                <a href="/patient_profile" class="btn btn-block text-uppercase btn-danger">Go Back</a>
+            </div> -->
+    </div>
+</div>

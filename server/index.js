@@ -5,7 +5,8 @@ const express = require('express');
 const router = require('./router');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-const port = process.env.PORT;
+const session = require('express-session');
+
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -25,18 +26,28 @@ db.connect(function(error){
     } else {
         console.warn(`Connected to database ${process.env.DATABASE}!`);
     }
-    });
+    console.log(`Connected to database ${process.env.DATABASE}!`);
+});
 global.db = db;
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 }
+}))
+app.use(bodyParser.json()); // parse form data client
 app.use('/static', express.static('static'));
 
 //Routes
 
 app.use(router);
 
-app.listen(port, () => {
-    console.warn(`Server running on port ${process.env.PORT} @ url http://localhost:${process.env.PORT}`);
+
+app.listen(3000, () => {
+    console.log(`Server running on port ${process.env.PORT} @ url http://localhost:${process.env.PORT}`);
+
 
 });

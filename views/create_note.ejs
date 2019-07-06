@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('partials/head'); %>
+  </head>
+  <body>
+
+<!-- Header -->
+<%- include('partials/header_admin'); %>
+<header class="bg-dark py-5 mb-4">
+    <div class="container">
+      <h2 class="font-weight-bold text-white text-uppercase">Create New Note</h2>
+    </div>
+  </header>
+  <section class="admin_section py-1">
+  <div class="col login-form-2">
+        <h3>Note Information</h3>
+        <form action="/create_note" method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" name="patient_id" id="patient_id" placeholder="Patient ID" value="" required/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="user_id" id="user_id" placeholder="Doctor ID" value="" required />
+            </div>
+            <div class="form-group">
+                <textarea type="text" rows="10" class="form-control" name="note_text" id="note_text" value="" required></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-block btn-dark text-uppercase" value="Submit Note" />
+            </div>
+            <!-- <div class="form-group">
+                <a href="/patient_profile" class="btn btn-block text-uppercase btn-danger">Go Back</a>
+            </div> -->
+        </form>
+    </div>
+</section>
+  <%- include('partials/footer'); %>
+  </body>
+  </html>
