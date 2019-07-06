@@ -6,6 +6,7 @@
   <body>
 
 <!-- Header -->
+<%- include('partials/header_admin'); %>
 <header class="bg-dark py-5 mb-4">
     <div class="container">
       <h2 class="font-weight-bold text-white text-uppercase">Create Category</h2>
@@ -14,21 +15,12 @@
   <section class="admin_section py-1">
   <div class="col login-form-2">
         <h3>Category Info</h3>
-        <form>
+        <form class="container" action="/add_category" method="POST">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email *" value="" />
+                <input type="text" class="form-control" name="category_id" placeholder="Category ID *" value="" required/>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Field name? *" value="" />
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Field name? *" value="" />
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Field name? *" value="" />
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Field name? *" value="" />
+                <input type="text" class="form-control" name="category_name" placeholder="Category Name *" value="" required/>
             </div>
             <div class="form-group">
                 <input type="submit" class="btnSubmit" value="Create" />

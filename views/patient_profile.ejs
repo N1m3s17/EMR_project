@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('partials/head'); %>
+  </head>
+  <body>
+
+<!-- Header -->
+<%- include('partials/header_admin'); %>
+<header class="bg-dark py-5 mb-4">
+    <div class="container">
+      <h2 class="font-weight-bold text-white text-uppercase">Patient #<%= patientX.patient_id %></h2>
+    </div>
+  </header>
+  <section class="admin_section py-1">
+  <div class="col login-form-2">
+        <h3>Patient Info</h3>
+        <p><%= patientX.first_name %><%= patientX.first_name %></p>
+        <p><%= patientX.date_of_birth %></p>
+        <p><%= patientX.address %></p>
+        <p><%= patientX.phone_number %></p>
+    </div>
+    <div class="col">
+        <% if(user.user_role === 'admin'){ %>
+            <hr>
+            <a href="/updatepatient/<%= patientX.patient_id %>" class="btn btn-block text-uppercase btn-danger">Update</a>
+            <hr>
+            <a href="/deletepatient/<%= patientX.patient_id %>" class="btn btn-block text-uppercase btn-danger">Delete</a>
+       <% } %>
+    </div>
+
+</section>
+  <%- include('partials/footer'); %>
+  </body>
+  </html>
