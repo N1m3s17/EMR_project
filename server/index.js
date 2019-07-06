@@ -15,14 +15,16 @@ app.set('view engine', 'ejs');
 const db = mysql.createConnection ({
     host: process.env.HOST,
     user: process.env.DBUSER,
-    password:process.env.DBPASSWORD,
+    password: process.env.DBPASSWORD,
     database: process.env.DATABASE
 })
 
 // Connect to database
-db.connect((err) => {
-    if (err) {
-        throw err;
+db.connect(function(error){
+    if(!!error){
+        console.warn(`Error connecting to ${process.env.DATABASE}!`);
+    } else {
+        console.warn(`Connected to database ${process.env.DATABASE}!`);
     }
     console.log(`Connected to database ${process.env.DATABASE}!`);
 });
@@ -43,7 +45,9 @@ app.use('/static', express.static('static'));
 
 app.use(router);
 
+
 app.listen(3000, () => {
     console.log(`Server running on port ${process.env.PORT} @ url http://localhost:${process.env.PORT}`);
+
 
 });

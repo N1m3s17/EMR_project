@@ -117,9 +117,27 @@ router.get('/admindash', (req, res) => {
           res.redirect('/doctordash');
         }
       })
+    })
+  });
+  // Search patient - admin
+  router.get('/patient_profile', (req, res,) => {
+    let patientId = req.params.userid;
+    let getpatientQuery = "SELECT * FROM `admin_hcp_user_profile` WHERE patient_id = '" + patientId + "'";
+
+    db.query(getpatientQuery, (err, result) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      res.render('doctor_profile', {
+        pageId: 'doctor_profile',
+        title: 'Doctor Profile',
+        patientX: result[0],
+      })
+    })
   });
   
    // Search Doctor - admin
+
 
    router.post('/admin_get_doctor', (req, res, next) => {
     let user = req.session.user;
@@ -140,7 +158,7 @@ router.get('/admindash', (req, res) => {
   })
   })
   
-  router.get('/doctordash', (req, res,) => {
+  router.get('/doctor_dash', (req, res,) => {
     res.render('doctor_dash', {
       pageId: 'doctor_dash',
       title: 'Welcome Doctor',
