@@ -374,4 +374,107 @@ router.get('/logout', (req, res, next) => {
     })
   }
 })
+
+ // Notes - create new and history
+
+ router.get('/note_history', (req, res,) => {
+  res.render('note_history', {
+    pageId: 'note_history',
+    title: 'Note History',
+  });
+});
+router.get('/note_history/:patient_id', (req, res) => {
+  let patient_id = req.params.patient_id;
+  let getNoteQuery = "SELECT * FROM `notes` WHERE `patient_id` = '" + patient_id + "' ORDER BY Date DESC ";
+    db.query(getNoteQuery, (err, result) => {
+      if (err) {
+        return res.status(500).send(err);
+    } else {
+        res.render('note_history', {
+        pageId: 'note_history',
+        title: 'Note History',
+        'sql': result,
+    })
+  }
+  console.log(result);
+  })
+});
+
+
+
+
+router.get('/create_note', (req, res,) => {
+  res.render('create_note', {
+    pageId: 'create_note',
+    title: 'Create Note',
+  });
+});
+
+router.post('/create_note',  (req, res) => {
+let patient_id = req.body.patient_id;
+let user_id = req.body.user_id;
+let note_text = req.body.note_text;
+let newNoteQuery = "INSERT INTO `notes` (patient_id, date, user_id, note_text) VALUES ('" +
+patient_id + "', CURRENT_TIMESTAMP(), '" + user_id + "', '" + note_text + "')";
+db.query(newNoteQuery, (err, result) => {
+if (err) {
+    return res.status(500).send(err);
+} else {
+      res.redirect('/doctordash');
+    }
+  })
+});
+
+router.get('/patient_report/:patient_id', (req, res) => {
+let patient_id = req.params.patient_id;
+let getReportQuery = "SELECT * FROM `patient_report` WHERE `patient_id` = '" + patient_id + "' ORDER BY datetime DESC";
+db.query(getReportQuery, (err, result) => {
+  if (err) {
+    return res.status(500).send(err);
+  } else {
+      res.render('patient_report', {
+      pageId: 'patient_report',
+      title: 'Patient Report',
+      'sql': result,
+  })
+}
+  console.log(result);
+})
+});
+
+
+router.get('/create_report', (req, res) => {
+let getCategoryQuery = "SELECT category_id FROM `report_category` ORDER BY category_id ASC";
+db.query(getCategoryQuery, (err, result) => {
+  if (err) {
+    return res.status(500).send(err);
+  } else {
+      res.render('create_report', {
+      pageId: 'create_report',
+      title: 'Create Report',
+      'sql': result,
+  })
+}
+  console.log(result);
+})
+});
+
+router.post('/create_report',  (req, res) => {
+let patient_id = req.body.patient_id;
+let user_id = req.body.user_id;
+let category_id = req.body.category_id;
+let report_name = req.body.report_name;
+let report_url = req.body.report_url;
+let newNoteQuery = "INSERT INTO `patient_report` (report_id, patient_id, user_id, category_id, report_name, report_url) VALUES (LAST_INSERT_ID(), '" +
+patient_id + "', '" + user_id + "', '" + category_id + "', '" + report_name + "', '" + report_url + "')";
+db.query(newNoteQuery, (err, result) => {
+if (err) {
+    return res.status(500).send(err);
+} else {
+      res.redirect('/doctordash');
+    }
+    console.log(result);
+  })
+});
+
 module.exports = router;
